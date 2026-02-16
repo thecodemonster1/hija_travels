@@ -17,14 +17,14 @@ export default function Header() {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
             <a
-              href="tel:+94771234567"
+              href="tel:+94707009393"
               className="flex items-center space-x-2 px-4 py-2 text-brand-700 hover:text-brand-900 transition-colors font-medium"
             >
               <Phone className="w-4 h-4" />
-              <span>+94 77 123 4567</span>
+              <span>+94 70 700 9393</span>
             </a>
             <a
-              href="https://wa.me/94771234567?text=Hi! I'm interested in exploring Sri Lanka"
+              href="https://wa.me/94707009393?text=Hi! I'm interested in exploring Sri Lanka"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 px-6 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors font-semibold"
@@ -36,14 +36,14 @@ export default function Header() {
           {/* Mobile Actions */}
           <div className="flex md:hidden items-center space-x-2">
             <a
-              href="tel:+94771234567"
+              href="tel:+94707009393"
               className="p-2 text-brand-700 hover:text-brand-900 transition-colors"
               aria-label="Call us"
             >
               <Phone className="w-5 h-5" />
             </a>
             <a
-              href="https://wa.me/94771234567?text=Hi! I'm interested in exploring Sri Lanka"
+              href="https://wa.me/94707009393?text=Hi! I'm interested in exploring Sri Lanka"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors"

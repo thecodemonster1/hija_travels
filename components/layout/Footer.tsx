@@ -38,22 +38,22 @@ export default function Footer() {
               <li className="flex items-start space-x-3">
                 <MessageCircle className="w-5 h-5 text-green-300 flex-shrink-0 mt-0.5" />
                 <a
-                  href="https://wa.me/94771234567?text=Hi! I'm interested in exploring Sri Lanka with Hija Travels"
+                  href="https://wa.me/94707009393?text=Hi! I'm interested in exploring Sri Lanka with Hija Travels"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-100 hover:text-white transition-colors text-sm font-medium"
                 >
-                  WhatsApp: +94 77 123 4567<br />
+                  WhatsApp: +94 70 700 9393<br />
                   <span className="text-xs text-green-300">✓ Fastest way to reach us!</span>
                 </a>
               </li>
               <li className="flex items-start space-x-3">
                 <Phone className="w-5 h-5 text-blue-200 flex-shrink-0 mt-0.5" />
                 <a
-                  href="tel:+94771234567"
+                  href="tel:+94707009393"
                   className="text-blue-100 hover:text-white transition-colors text-sm"
                 >
-                  +94 77 123 4567
+                  +94 70 700 9393
                 </a>
               </li>
               <li className="flex items-start space-x-3">
@@ -98,7 +98,7 @@ export default function Footer() {
                 Ready to explore Sri Lanka? Let's chat!
               </p>
               <a
-                href="https://wa.me/94771234567?text=Hi! I want to plan my Sri Lanka adventure"
+                href="https://wa.me/94707009393?text=Hi! I want to plan my Sri Lanka adventure"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center space-x-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-all font-semibold text-sm"

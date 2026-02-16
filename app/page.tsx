@@ -127,7 +127,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="https://wa.me/94771234567?text=Hi! I'm interested in exploring Sri Lanka with Hija Travels"
+                href="https://wa.me/94707009393?text=Hi! I'm interested in exploring Sri Lanka with Hija Travels"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center space-x-2 px-8 py-4 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all font-semibold text-lg shadow-lg"
@@ -452,7 +452,7 @@ export default function Home() {
 
           <div className="text-center mt-12">
             <a
-              href="https://wa.me/94771234567?text=Hi! I'd like to know more about your vehicles and pricing"
+              href="https://wa.me/94707009393?text=Hi! I'd like to know more about your vehicles and pricing"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 px-8 py-4 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all font-semibold text-lg shadow-lg"
@@ -626,7 +626,7 @@ export default function Home() {
                   </p>
                   <div className="space-y-4">
                     <a
-                      href="https://wa.me/94771234567?text=Hi Hija Travels! I'm interested in exploring Sri Lanka. Can you help me plan my trip?"
+                      href="https://wa.me/94707009393?text=Hi Hija Travels! I'm interested in exploring Sri Lanka. Can you help me plan my trip?"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full inline-flex items-center justify-center space-x-2 px-8 py-4 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all font-semibold text-lg shadow-lg"
@@ -635,11 +635,11 @@ export default function Home() {
                       <span>Chat on WhatsApp</span>
                     </a>
                     <a
-                      href="tel:+94771234567"
+                      href="tel:+94707009393"
                       className="w-full inline-flex items-center justify-center space-x-2 px-8 py-4 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-all font-semibold text-lg"
                     >
                       <Phone className="w-5 h-5" />
-                      <span>Call Us: +94 77 123 4567</span>
+                      <span>Call Us: +94 70 700 9393</span>
                     </a>
                   </div>
                   <p className="text-sm text-gray-500 mt-4 text-center">
