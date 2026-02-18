@@ -21,6 +21,7 @@ import {
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
+import PhotoGallery from "@/components/gallery/PhotoGallery";
 
 export default function Home() {
   // Mock data for vehicles
@@ -103,6 +104,82 @@ export default function Home() {
       rating: 5,
       comment: "Absolutely brilliant! The free extras (surprise stops, local snacks) made it feel less like a tour and more like traveling with a mate!",
       trip: "Highlights of Sri Lanka",
+    },
+  ];
+
+  // Real trip photos from Hija Travels adventures!
+  const galleryImages = [
+    {
+      id: 1,
+      src: "/gallery/trip-1.jpg",
+      alt: "Amazing adventure with Hija Travels",
+      caption: "Creating unforgettable memories in Sri Lanka! 🌟",
+    },
+    {
+      id: 2,
+      src: "/gallery/trip-2.jpg",
+      alt: "Happy travelers exploring Sri Lanka",
+      caption: "Adventure mode: ON! Best day ever 🚀",
+    },
+    {
+      id: 3,
+      src: "/gallery/trip-3.jpg",
+      alt: "Beautiful moments on tour",
+      caption: "Living our best lives in paradise 🌴",
+    },
+    {
+      id: 4,
+      src: "/gallery/trip-4.jpg",
+      alt: "Hija Travels tour group",
+      caption: "Squad goals! New friends = family ❤️",
+    },
+    {
+      id: 5,
+      src: "/gallery/trip-5.jpg",
+      alt: "Exploring Sri Lankan culture",
+      caption: "Worth every single step! 💪",
+    },
+    {
+      id: 6,
+      src: "/gallery/trip-6.jpg",
+      alt: "Scenic views with Hija Travels",
+      caption: "Paradise found! Could stay here forever 🏖️",
+    },
+    {
+      id: 7,
+      src: "/gallery/trip-7.jpg",
+      alt: "Fun moments with tour group",
+      caption: "These memories will last a lifetime 📸",
+    },
+    {
+      id: 8,
+      src: "/gallery/trip-8.jpg",
+      alt: "Adventure seekers with Hija Travels",
+      caption: "So glad we chose Hija Travels! ✨",
+    },
+    {
+      id: 9,
+      src: "/gallery/trip-9.jpg",
+      alt: "Magical moments in Sri Lanka",
+      caption: "Best tour guide ever! Highly recommend 🌟",
+    },
+    {
+      id: 10,
+      src: "/gallery/trip-10.jpg",
+      alt: "Beautiful Sri Lankan landscapes",
+      caption: "Nature at its finest! Mind blown 🤯",
+    },
+    {
+      id: 11,
+      src: "/gallery/trip-11.jpg",
+      alt: "Travelers enjoying the journey",
+      caption: "Every corner is Instagram-worthy! 📷",
+    },
+    {
+      id: 12,
+      src: "/gallery/trip-12.jpg",
+      alt: "Group adventure with Hija Travels",
+      caption: "Can't wait to come back! Thank you Hija! 💛",
     },
   ];
 
@@ -778,6 +855,9 @@ export default function Home() {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* Photo Gallery Section */}
+      <PhotoGallery images={galleryImages} />
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-brand-50 to-blue-50">
