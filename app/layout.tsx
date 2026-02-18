@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import SplashScreen from "@/components/layout/SplashScreen";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import ScrollToTop from "@/components/ui/ScrollToTop";
+import ZTechCredit from "@/components/ui/ZTechCredit";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <ZTechCredit variant="gradient" />
         <ScrollToTop />
       </body>
     </html>
