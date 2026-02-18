@@ -1,3 +1,4 @@
+"use client";
 import {
   Mail,
   Phone,
@@ -7,6 +8,7 @@ import {
   MessageCircle,
   Heart,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -78,26 +80,32 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Follow Our Adventures</h3>
             <div className="flex space-x-4 mb-6">
-              <a
+              <motion.a
+                whileHover={{ scale: 1.15, rotate: 5 }}
+                whileTap={{ scale: 0.95 }}
                 href="#"
                 className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all"
                 aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.15, rotate: -5 }}
+                whileTap={{ scale: 0.95 }}
                 href="#"
                 className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
-              </a>
+              </motion.a>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
               <p className="text-sm text-blue-100 mb-3">
                 Ready to explore Sri Lanka? Let's chat!
               </p>
-              <a
+              <motion.a
+                whileHover={{ scale: 1.05, boxShadow: "0 4px 20px rgba(34, 197, 94, 0.4)" }}
+                whileTap={{ scale: 0.95 }}
                 href="https://wa.me/94707009393?text=Hi! I want to plan my Sri Lanka adventure"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -105,14 +113,21 @@ export default function Footer() {
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Start Planning</span>
-              </a>
+              </motion.a>
             </div>
           </div>
         </div>
 
         <div className="border-t border-white/20 mt-8 pt-8 text-center">
           <p className="text-blue-100 text-sm flex items-center justify-center gap-2">
-            © {currentYear} Hija Travels. Made with <Heart className="w-4 h-4 text-red-400 fill-red-400" /> in Sri Lanka 🇱🇰
+            © {currentYear} Hija Travels. Made with{" "}
+            <motion.span
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 1, repeat: Infinity, repeatDelay: 0.5 }}
+            >
+              <Heart className="w-4 h-4 text-red-400 fill-red-400" />
+            </motion.span>{" "}
+            in Sri Lanka 🇱🇰
           </p>
           <p className="text-blue-200 text-xs mt-2">
             Your gateway to unforgettable Sri Lankan adventures! ✨
