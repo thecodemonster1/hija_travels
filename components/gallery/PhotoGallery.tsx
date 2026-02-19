@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Camera, X } from "lucide-react";
+import HorizontalGallery from "./HorizontalGallery";
 
 interface GalleryImage {
   id: number;
@@ -26,6 +27,7 @@ export default function PhotoGallery({
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [viewMode, setViewMode] = useState<"horizontal" | "scroll">("horizontal");
 
   const checkScrollButtons = () => {
     if (scrollContainerRef.current) {
@@ -61,6 +63,9 @@ export default function PhotoGallery({
 
   return (
     <>
+      {/* Premium Horizontal Scroll Gallery */}
+      {viewMode === "horizontal" && <HorizontalGallery />}
+
       <section className="py-16 md:py-24 bg-gradient-to-br from-brand-50 to-blue-50">
         <div className="container mx-auto px-4 lg:px-8">
           {/* Header */}
@@ -73,14 +78,36 @@ export default function PhotoGallery({
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <Camera className="w-8 h-8 text-brand-600" />
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                {title}
-              </h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">{title}</h2>
             </div>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              {subtitle}
-            </p>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
           </motion.div>
+
+          {/* View Mode Toggle */}
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex bg-white rounded-full p-1 shadow-lg border border-gray-200">
+              <button
+                onClick={() => setViewMode("horizontal")}
+                className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
+                  viewMode === "horizontal"
+                    ? "bg-gradient-to-r from-brand-600 to-blue-600 text-white shadow-md"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                Cinematic Scroll
+              </button>
+              <button
+                onClick={() => setViewMode("scroll")}
+                className={`px-6 py-2.5 rounded-full font-medium transition-all duration-300 ${
+                  viewMode === "scroll"
+                    ? "bg-gradient-to-r from-brand-600 to-blue-600 text-white shadow-md"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                Classic View
+              </button>
+            </div>
+          </div>
 
           {/* Gallery Container */}
           <div className="relative group">
@@ -156,13 +183,9 @@ export default function PhotoGallery({
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
                       <div className="absolute bottom-0 left-0 right-0 p-4">
                         {image.caption && (
-                          <p className="text-white text-sm font-medium">
-                            {image.caption}
-                          </p>
+                          <p className="text-white text-sm font-medium">{image.caption}</p>
                         )}
-                        <p className="text-white/80 text-xs mt-1">
-                          Click to view larger
-                        </p>
+                        <p className="text-white/80 text-xs mt-1">Click to view larger</p>
                       </div>
                     </div>
 
@@ -181,9 +204,7 @@ export default function PhotoGallery({
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-center mt-6 md:hidden"
           >
-            <p className="text-sm text-gray-500">
-              👉 Swipe to see more memories
-            </p>
+            <p className="text-sm text-gray-500">👉 Swipe to see more memories</p>
           </motion.div>
         </div>
       </section>
@@ -235,9 +256,7 @@ export default function PhotoGallery({
                   transition={{ delay: 0.2 }}
                   className="mt-4 text-center"
                 >
-                  <p className="text-white text-lg font-medium">
-                    {selectedImage.caption}
-                  </p>
+                  <p className="text-white text-lg font-medium">{selectedImage.caption}</p>
                 </motion.div>
               )}
             </motion.div>
@@ -258,4 +277,3 @@ export default function PhotoGallery({
     </>
   );
 }
-
