@@ -22,6 +22,11 @@ const photos: Photo[] = [
   { id: 10, src: '/gallery/trip-10.jpg', alt: 'Unity in prayer', location: 'Masjid Quba', year: '2023' },
   { id: 11, src: '/gallery/trip-11.jpg', alt: 'Reflections', location: 'Jannat al-Baqi', year: '2023' },
   { id: 12, src: '/gallery/trip-12.jpg', alt: 'Beautiful sunset', location: 'Taif Mountains', year: '2023' },
+  { id: 13, src: '/gallery/trip-13.jpeg', alt: 'Sacred landscapes', location: 'AlUla', year: '2023' },
+  { id: 14, src: '/gallery/trip-14.jpeg', alt: 'Cultural heritage', location: 'Historic Jeddah', year: '2023' },
+  { id: 15, src: '/gallery/trip-15.jpeg', alt: 'Spiritual journey', location: 'Mount Uhud', year: '2023' },
+  { id: 16, src: '/gallery/trip-16.jpeg', alt: 'Divine connection', location: 'Masjid Qiblatain', year: '2023' },
+  { id: 17, src: '/gallery/trip-17.jpeg', alt: 'Blessed moments', location: 'Zamzam Well', year: '2023' },
 ];
 
 export default function HorizontalGallery() {
@@ -181,7 +186,7 @@ export default function HorizontalGallery() {
                     }}
                   >
                     {/* Image with parallax */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-amber-100 to-orange-100">
+                    <div className="absolute inset-0">
                       <Image
                         src={photo.src}
                         alt={photo.alt}
@@ -195,10 +200,6 @@ export default function HorizontalGallery() {
                         priority={index < 3}
                       />
                     </div>
-
-                    {/* Gradient overlays */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 to-transparent" />
 
                     {/* Info overlay - always visible on larger cards */}
                     <div className={`absolute bottom-0 left-0 right-0 p-6 md:p-10 text-white ${isLarge ? '' : 'opacity-0 group-hover:opacity-100'} transition-all duration-700`}>
@@ -260,7 +261,7 @@ export default function HorizontalGallery() {
                       borderRadius: '24px',
                     }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-100 to-amber-100">
+                    <div className="absolute inset-0">
                       <Image
                         src={photo.src}
                         alt={photo.alt}
@@ -320,5 +321,3 @@ export default function HorizontalGallery() {
     </section>
   );
 }
-
-
