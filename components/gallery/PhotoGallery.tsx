@@ -2,8 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Camera, X } from "lucide-react";
-import HorizontalGallery from "./HorizontalGallery";
+import { Camera, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface GalleryImage {
   id: number;
@@ -24,7 +23,6 @@ export default function PhotoGallery({
   subtitle = "Captured moments, shared laughter, and unforgettable memories with amazing travelers!"
 }: PhotoGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
-  const [viewMode, setViewMode] = useState<"horizontal" | "scroll">("scroll");
 
   // Keyboard navigation for lightbox
   useEffect(() => {
@@ -56,169 +54,111 @@ export default function PhotoGallery({
 
   return (
     <>
-      {/* View Mode Toggle - Shared Control */}
-      <div className="py-12 bg-gradient-to-b from-white to-brand-50/20">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex justify-center"
-        >
-          <div className="inline-flex bg-white rounded-full p-1.5 shadow-xl border border-gray-200/50 backdrop-blur-sm">
-            <button
-              onClick={() => setViewMode("horizontal")}
-              className={`px-8 py-3 rounded-full font-semibold text-sm transition-all duration-300 ${
-                viewMode === "horizontal"
-                  ? "bg-gradient-to-r from-brand-600 to-blue-600 text-white shadow-lg shadow-brand-500/30"
-                  : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-              }`}
-            >
-              🎬 Cinematic Scroll
-            </button>
-            <button
-              onClick={() => setViewMode("scroll")}
-              className={`px-8 py-3 rounded-full font-semibold text-sm transition-all duration-300 ${
-                viewMode === "scroll"
-                  ? "bg-gradient-to-r from-brand-600 to-blue-600 text-white shadow-lg shadow-brand-500/30"
-                  : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-              }`}
-            >
-              📸 Classic Grid
-            </button>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Premium Horizontal Scroll Gallery */}
-      <AnimatePresence mode="wait">
-        {viewMode === "horizontal" && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-          >
-            <HorizontalGallery />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Classic Gallery View */}
-      <AnimatePresence mode="wait">
-        {viewMode === "scroll" && (
-          <motion.section
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="py-24 md:py-32 bg-gradient-to-br from-white via-brand-50/30 to-blue-50/30 relative overflow-hidden"
-          >
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-[0.03]">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage:
-                    'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
-                  backgroundSize: '48px 48px',
-                }}
-              />
-            </div>
+      <section className="py-24 md:py-32 bg-gradient-to-br from-white via-brand-50/30 to-blue-50/30 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
+              backgroundSize: '48px 48px',
+            }}
+          />
+        </div>
 
-            <div className="container mx-auto px-4 lg:px-8 relative">
-              {/* Premium Header */}
+        <div className="container mx-auto px-4 lg:px-8 relative">
+          {/* Premium Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center justify-center gap-3 mb-6 px-6 py-3 rounded-full bg-gradient-to-r from-brand-100 to-blue-100 border border-brand-200/50">
+              <Camera className="w-5 h-5 text-brand-600" />
+              <span className="text-sm font-semibold text-brand-700 uppercase tracking-wider">
+                Gallery
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              {title}
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              {subtitle}
+            </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-brand-500 to-blue-500 mx-auto mt-8 rounded-full" />
+          </motion.div>
+
+          {/* Professional Grid Gallery */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+            {images.map((image, index) => (
               <motion.div
+                key={image.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="text-center mb-16"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.08 }}
+                className="group cursor-pointer"
+                onClick={() => setSelectedImage(image)}
               >
-                <div className="inline-flex items-center justify-center gap-3 mb-6 px-6 py-3 rounded-full bg-gradient-to-r from-brand-100 to-blue-100 border border-brand-200/50">
-                  <Camera className="w-5 h-5 text-brand-600" />
-                  <span className="text-sm font-semibold text-brand-700 uppercase tracking-wider">
-                    Gallery
-                  </span>
-                </div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                  {title}
-                </h2>
-                <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                  {subtitle}
-                </p>
-                <div className="w-24 h-1 bg-gradient-to-r from-brand-500 to-blue-500 mx-auto mt-8 rounded-full" />
-              </motion.div>
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-brand-100 to-blue-100 shadow-lg hover:shadow-2xl transition-all duration-500">
+                  {/* Image */}
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  />
 
-              {/* Professional Grid Gallery */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-                {images.map((image, index) => (
-                  <motion.div
-                    key={image.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.6, delay: index * 0.08 }}
-                    className="group cursor-pointer"
-                    onClick={() => setSelectedImage(image)}
-                  >
-                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-brand-100 to-blue-100 shadow-lg hover:shadow-2xl transition-all duration-500">
-                      {/* Image */}
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                      />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                      {/* Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                      {/* Content Overlay */}
-                      <div className="absolute inset-0 flex flex-col justify-end p-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                        {image.caption && (
-                          <p className="text-white font-semibold text-base mb-2 drop-shadow-lg">
-                            {image.caption}
-                          </p>
-                        )}
-                        <div className="flex items-center gap-2 text-white/90 text-sm">
-                          <div className="w-8 h-0.5 bg-white/50 rounded-full" />
-                          <span className="text-xs font-medium">View Full Image</span>
-                        </div>
-                      </div>
-
-                      {/* Corner Accent */}
-                      <div className="absolute top-4 right-4 w-10 h-10 border-t-2 border-r-2 border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                      {/* Photo Number Badge */}
-                      <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <span className="text-white text-xs font-semibold">#{index + 1}</span>
-                      </div>
+                  {/* Content Overlay */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                    {image.caption && (
+                      <p className="text-white font-semibold text-base mb-2 drop-shadow-lg">
+                        {image.caption}
+                      </p>
+                    )}
+                    <div className="flex items-center gap-2 text-white/90 text-sm">
+                      <div className="w-8 h-0.5 bg-white/50 rounded-full" />
+                      <span className="text-xs font-medium">View Full Image</span>
                     </div>
-                  </motion.div>
-                ))}
-              </div>
+                  </div>
 
-              {/* Gallery Stats */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="mt-16 text-center"
-              >
-                <div className="inline-flex items-center gap-3 px-8 py-4 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-gray-200/50">
-                  <Camera className="w-5 h-5 text-brand-600" />
-                  <span className="text-gray-700 font-medium">
-                    {images.length} precious moments captured
-                  </span>
+                  {/* Corner Accent */}
+                  <div className="absolute top-4 right-4 w-10 h-10 border-t-2 border-r-2 border-white/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  {/* Photo Number Badge */}
+                  <div className="absolute top-4 left-4 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <span className="text-white text-xs font-semibold">#{index + 1}</span>
+                  </div>
                 </div>
               </motion.div>
+            ))}
+          </div>
+
+          {/* Gallery Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-16 text-center"
+          >
+            <div className="inline-flex items-center gap-3 px-8 py-4 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-gray-200/50">
+              <Camera className="w-5 h-5 text-brand-600" />
+              <span className="text-gray-700 font-medium">
+                {images.length} precious moments captured
+              </span>
             </div>
-          </motion.section>
-        )}
-      </AnimatePresence>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Professional Lightbox Modal */}
       <AnimatePresence>
