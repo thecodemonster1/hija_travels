@@ -34,7 +34,7 @@ const ZTechCredit: React.FC<ZTechCreditProps> = ({
   return (
     <div className={`${baseClasses} ${variantClasses} ${className}`}>
       <div className={`${textColor} font-medium tracking-wide`}>
-        Recreated by 🧑‍💻{' '}
+        Built by 🧑‍💻{' '}
         <a
           href="https://ztechlanka.com?utm_source=hijatravels&utm_medium=footer_credit&utm_campaign=client_backlinks"
           target="_blank"
