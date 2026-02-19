@@ -57,7 +57,7 @@ export default function PhotoGallery({
       {/* Classic Gallery View */}
       <section className="py-24 md:py-32 bg-gradient-to-br from-white via-brand-50/30 to-blue-50/30 relative overflow-hidden">
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute inset-0 opacity-[0.3]">
           <div
             className="absolute inset-0"
             style={{
@@ -83,7 +83,7 @@ export default function PhotoGallery({
                 Gallery
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               {title}
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
