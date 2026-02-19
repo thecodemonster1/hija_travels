@@ -120,14 +120,7 @@ export default function Footer() {
 
         <div className="border-t border-white/20 mt-8 pt-8 text-center">
           <p className="text-blue-100 text-sm flex items-center justify-center gap-2">
-            © {currentYear} Hija Travels. Made with{" "}
-            <motion.span
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 1, repeat: Infinity, repeatDelay: 0.5 }}
-            >
-              <Heart className="w-4 h-4 text-red-400 fill-red-400" />
-            </motion.span>{" "}
-            in Sri Lanka 🇱🇰
+            © {currentYear} Hija Travels.
           </p>
           <p className="text-blue-200 text-xs mt-2">
             Your gateway to unforgettable Sri Lankan adventures! ✨
