@@ -31,7 +31,7 @@ export default function Home() {
       name: "Honda KDH Van",
       type: "Perfect for groups & families",
       capacity: "Up to 10 passengers",
-      image: "/gallery/Vehicle/vehicle-7.jpeg",
+      image: "/gallery/Vehicle/vehicle-16.jpeg",
       features: ["Air Conditioned", "Comfortable Seats", "Music System", "WiFi Available"],
       description: "Travel in style and comfort with our reliable Honda KDH van. Perfect for group tours and family adventures!",
     },
