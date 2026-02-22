@@ -357,240 +357,240 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sri Lanka Highlights */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 lg:px-8">
-          <AnimatedSection animation="slide-up" className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Sri Lanka: The Wonder of Asia 🌴
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Imagine a place where ancient temples touch the clouds, elephants roam free,
-              tea plantations carpet mountains, and beaches rival the Maldives.
-              Now stop imagining - that's just a regular Tuesday in Sri Lanka!
-            </p>
-          </AnimatedSection>
+      {/*/!* Sri Lanka Highlights *!/*/}
+      {/*<section className="py-16 md:py-24">*/}
+      {/*  <div className="container mx-auto px-4 lg:px-8">*/}
+      {/*    <AnimatedSection animation="slide-up" className="text-center mb-12">*/}
+      {/*      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">*/}
+      {/*        Sri Lanka: The Wonder of Asia 🌴*/}
+      {/*      </h2>*/}
+      {/*      <p className="text-lg text-gray-600 max-w-3xl mx-auto">*/}
+      {/*        Imagine a place where ancient temples touch the clouds, elephants roam free,*/}
+      {/*        tea plantations carpet mountains, and beaches rival the Maldives.*/}
+      {/*        Now stop imagining - that's just a regular Tuesday in Sri Lanka!*/}
+      {/*      </p>*/}
+      {/*    </AnimatedSection>*/}
 
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <StaggerItem>
-              <motion.div
-                whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}
-                className="group bg-white rounded-xl overflow-hidden shadow-sm"
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Image
-                      src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070"
-                      alt="Ancient Temples"
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.div>
-                  <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 text-white">
-                    <Palmtree className="w-4 h-4" />
-                    <span className="text-sm font-medium">Cultural Heritage</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    8 UNESCO World Heritage Sites
-                  </h3>
-                  <p className="text-gray-600">
-                    Ancient cities, sacred temples, and colonial forts that'll make your history teacher jealous.
-                    Sigiriya Rock Fortress? That's basically an ancient skyscraper with better views!
-                  </p>
-                </div>
-              </motion.div>
-            </StaggerItem>
+      {/*    <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">*/}
+      {/*      <StaggerItem>*/}
+      {/*        <motion.div*/}
+      {/*          whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}*/}
+      {/*          className="group bg-white rounded-xl overflow-hidden shadow-sm"*/}
+      {/*        >*/}
+      {/*          <div className="relative h-64 overflow-hidden">*/}
+      {/*            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />*/}
+      {/*            <motion.div*/}
+      {/*              whileHover={{ scale: 1.1 }}*/}
+      {/*              transition={{ duration: 0.5 }}*/}
+      {/*            >*/}
+      {/*              <Image*/}
+      {/*                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070"*/}
+      {/*                alt="Ancient Temples"*/}
+      {/*                fill*/}
+      {/*                className="object-cover"*/}
+      {/*              />*/}
+      {/*            </motion.div>*/}
+      {/*            <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 text-white">*/}
+      {/*              <Palmtree className="w-4 h-4" />*/}
+      {/*              <span className="text-sm font-medium">Cultural Heritage</span>*/}
+      {/*            </div>*/}
+      {/*          </div>*/}
+      {/*          <div className="p-6">*/}
+      {/*            <h3 className="text-xl font-semibold text-gray-900 mb-2">*/}
+      {/*              8 UNESCO World Heritage Sites*/}
+      {/*            </h3>*/}
+      {/*            <p className="text-gray-600">*/}
+      {/*              Ancient cities, sacred temples, and colonial forts that'll make your history teacher jealous.*/}
+      {/*              Sigiriya Rock Fortress? That's basically an ancient skyscraper with better views!*/}
+      {/*            </p>*/}
+      {/*          </div>*/}
+      {/*        </motion.div>*/}
+      {/*      </StaggerItem>*/}
 
-            <StaggerItem>
-              <motion.div
-                whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}
-                className="group bg-white rounded-xl overflow-hidden shadow-sm"
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Image
-                      src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2070"
-                      alt="Wildlife Safari"
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.div>
-                  <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 text-white">
-                    <Mountain className="w-4 h-4" />
-                    <span className="text-sm font-medium">Wildlife Paradise</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    Elephants, Leopards & More!
-                  </h3>
-                  <p className="text-gray-600">
-                    Home to the highest density of leopards in the world! Yala National Park is like
-                    a real-life Lion King, except with more elephants and zero singing warthogs.
-                  </p>
-                </div>
-              </motion.div>
-            </StaggerItem>
+      {/*      <StaggerItem>*/}
+      {/*        <motion.div*/}
+      {/*          whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}*/}
+      {/*          className="group bg-white rounded-xl overflow-hidden shadow-sm"*/}
+      {/*        >*/}
+      {/*          <div className="relative h-64 overflow-hidden">*/}
+      {/*            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />*/}
+      {/*            <motion.div*/}
+      {/*              whileHover={{ scale: 1.1 }}*/}
+      {/*              transition={{ duration: 0.5 }}*/}
+      {/*            >*/}
+      {/*              <Image*/}
+      {/*                src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2070"*/}
+      {/*                alt="Wildlife Safari"*/}
+      {/*                fill*/}
+      {/*                className="object-cover"*/}
+      {/*              />*/}
+      {/*            </motion.div>*/}
+      {/*            <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 text-white">*/}
+      {/*              <Mountain className="w-4 h-4" />*/}
+      {/*              <span className="text-sm font-medium">Wildlife Paradise</span>*/}
+      {/*            </div>*/}
+      {/*          </div>*/}
+      {/*          <div className="p-6">*/}
+      {/*            <h3 className="text-xl font-semibold text-gray-900 mb-2">*/}
+      {/*              Elephants, Leopards & More!*/}
+      {/*            </h3>*/}
+      {/*            <p className="text-gray-600">*/}
+      {/*              Home to the highest density of leopards in the world! Yala National Park is like*/}
+      {/*              a real-life Lion King, except with more elephants and zero singing warthogs.*/}
+      {/*            </p>*/}
+      {/*          </div>*/}
+      {/*        </motion.div>*/}
+      {/*      </StaggerItem>*/}
 
-            <StaggerItem>
-              <motion.div
-                whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}
-                className="group bg-white rounded-xl overflow-hidden shadow-sm"
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Image
-                      src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=2070"
-                      alt="Beautiful Beaches"
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.div>
-                  <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 text-white">
-                    <Waves className="w-4 h-4" />
-                    <span className="text-sm font-medium">Pristine Beaches</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    1,340 km of Coastline
-                  </h3>
-                  <p className="text-gray-600">
-                    Golden sands, turquoise waters, and palm trees that actually exist (not just in Corona commercials).
-                    Perfect for surfing, swimming, or just pretending you're in a music video.
-                  </p>
-                </div>
-              </motion.div>
-            </StaggerItem>
+      {/*      <StaggerItem>*/}
+      {/*        <motion.div*/}
+      {/*          whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}*/}
+      {/*          className="group bg-white rounded-xl overflow-hidden shadow-sm"*/}
+      {/*        >*/}
+      {/*          <div className="relative h-64 overflow-hidden">*/}
+      {/*            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />*/}
+      {/*            <motion.div*/}
+      {/*              whileHover={{ scale: 1.1 }}*/}
+      {/*              transition={{ duration: 0.5 }}*/}
+      {/*            >*/}
+      {/*              <Image*/}
+      {/*                src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=2070"*/}
+      {/*                alt="Beautiful Beaches"*/}
+      {/*                fill*/}
+      {/*                className="object-cover"*/}
+      {/*              />*/}
+      {/*            </motion.div>*/}
+      {/*            <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 text-white">*/}
+      {/*              <Waves className="w-4 h-4" />*/}
+      {/*              <span className="text-sm font-medium">Pristine Beaches</span>*/}
+      {/*            </div>*/}
+      {/*          </div>*/}
+      {/*          <div className="p-6">*/}
+      {/*            <h3 className="text-xl font-semibold text-gray-900 mb-2">*/}
+      {/*              1,340 km of Coastline*/}
+      {/*            </h3>*/}
+      {/*            <p className="text-gray-600">*/}
+      {/*              Golden sands, turquoise waters, and palm trees that actually exist (not just in Corona commercials).*/}
+      {/*              Perfect for surfing, swimming, or just pretending you're in a music video.*/}
+      {/*            </p>*/}
+      {/*          </div>*/}
+      {/*        </motion.div>*/}
+      {/*      </StaggerItem>*/}
 
-            <StaggerItem>
-              <motion.div
-                whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}
-                className="group bg-white rounded-xl overflow-hidden shadow-sm"
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Image
-                      src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070"
-                      alt="Tea Plantations"
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.div>
-                  <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 text-white">
-                    <Coffee className="w-4 h-4" />
-                    <span className="text-sm font-medium">Hill Country</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    World's Best Tea
-                  </h3>
-                  <p className="text-gray-600">
-                    Rolling green hills covered in tea plantations. Nuwara Eliya is like Scotland
-                    but warmer, with better tea, and yes, you CAN visit a tea factory!
-                  </p>
-                </div>
-              </motion.div>
-            </StaggerItem>
+      {/*      <StaggerItem>*/}
+      {/*        <motion.div*/}
+      {/*          whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}*/}
+      {/*          className="group bg-white rounded-xl overflow-hidden shadow-sm"*/}
+      {/*        >*/}
+      {/*          <div className="relative h-64 overflow-hidden">*/}
+      {/*            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />*/}
+      {/*            <motion.div*/}
+      {/*              whileHover={{ scale: 1.1 }}*/}
+      {/*              transition={{ duration: 0.5 }}*/}
+      {/*            >*/}
+      {/*              <Image*/}
+      {/*                src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070"*/}
+      {/*                alt="Tea Plantations"*/}
+      {/*                fill*/}
+      {/*                className="object-cover"*/}
+      {/*              />*/}
+      {/*            </motion.div>*/}
+      {/*            <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 text-white">*/}
+      {/*              <Coffee className="w-4 h-4" />*/}
+      {/*              <span className="text-sm font-medium">Hill Country</span>*/}
+      {/*            </div>*/}
+      {/*          </div>*/}
+      {/*          <div className="p-6">*/}
+      {/*            <h3 className="text-xl font-semibold text-gray-900 mb-2">*/}
+      {/*              World's Best Tea*/}
+      {/*            </h3>*/}
+      {/*            <p className="text-gray-600">*/}
+      {/*              Rolling green hills covered in tea plantations. Nuwara Eliya is like Scotland*/}
+      {/*              but warmer, with better tea, and yes, you CAN visit a tea factory!*/}
+      {/*            </p>*/}
+      {/*          </div>*/}
+      {/*        </motion.div>*/}
+      {/*      </StaggerItem>*/}
 
-            <StaggerItem>
-              <motion.div
-                whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}
-                className="group bg-white rounded-xl overflow-hidden shadow-sm"
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Image
-                      src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2070"
-                      alt="Local Cuisine"
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.div>
-                  <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 text-white">
-                    <Coffee className="w-4 h-4" />
-                    <span className="text-sm font-medium">Amazing Food</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    Cuisine That Packs Flavor!
-                  </h3>
-                  <p className="text-gray-600">
-                    Rice & curry that'll make you question every meal you've had before.
-                    Spicy? Yes. Worth it? Absolutely. Will you ask for seconds? Guaranteed!
-                  </p>
-                </div>
-              </motion.div>
-            </StaggerItem>
+      {/*      <StaggerItem>*/}
+      {/*        <motion.div*/}
+      {/*          whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}*/}
+      {/*          className="group bg-white rounded-xl overflow-hidden shadow-sm"*/}
+      {/*        >*/}
+      {/*          <div className="relative h-64 overflow-hidden">*/}
+      {/*            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />*/}
+      {/*            <motion.div*/}
+      {/*              whileHover={{ scale: 1.1 }}*/}
+      {/*              transition={{ duration: 0.5 }}*/}
+      {/*            >*/}
+      {/*              <Image*/}
+      {/*                src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2070"*/}
+      {/*                alt="Local Cuisine"*/}
+      {/*                fill*/}
+      {/*                className="object-cover"*/}
+      {/*              />*/}
+      {/*            </motion.div>*/}
+      {/*            <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 text-white">*/}
+      {/*              <Coffee className="w-4 h-4" />*/}
+      {/*              <span className="text-sm font-medium">Amazing Food</span>*/}
+      {/*            </div>*/}
+      {/*          </div>*/}
+      {/*          <div className="p-6">*/}
+      {/*            <h3 className="text-xl font-semibold text-gray-900 mb-2">*/}
+      {/*              Cuisine That Packs Flavor!*/}
+      {/*            </h3>*/}
+      {/*            <p className="text-gray-600">*/}
+      {/*              Rice & curry that'll make you question every meal you've had before.*/}
+      {/*              Spicy? Yes. Worth it? Absolutely. Will you ask for seconds? Guaranteed!*/}
+      {/*            </p>*/}
+      {/*          </div>*/}
+      {/*        </motion.div>*/}
+      {/*      </StaggerItem>*/}
 
-            <StaggerItem>
-              <motion.div
-                whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}
-                className="group bg-white rounded-xl overflow-hidden shadow-sm"
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Image
-                      src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?q=80&w=2070"
-                      alt="Warm People"
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.div>
-                  <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 text-white">
-                    <Heart className="w-4 h-4" />
-                    <span className="text-sm font-medium">Warm Hospitality</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    The Friendliest People
-                  </h3>
-                  <p className="text-gray-600">
-                    Sri Lankans smile at strangers, help tourists, and treat guests like family.
-                    Warning: You might leave with 47 new Facebook friends and invitations to three weddings!
-                  </p>
-                </div>
-              </motion.div>
-            </StaggerItem>
-          </StaggerContainer>
+      {/*      <StaggerItem>*/}
+      {/*        <motion.div*/}
+      {/*          whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}*/}
+      {/*          className="group bg-white rounded-xl overflow-hidden shadow-sm"*/}
+      {/*        >*/}
+      {/*          <div className="relative h-64 overflow-hidden">*/}
+      {/*            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />*/}
+      {/*            <motion.div*/}
+      {/*              whileHover={{ scale: 1.1 }}*/}
+      {/*              transition={{ duration: 0.5 }}*/}
+      {/*            >*/}
+      {/*              <Image*/}
+      {/*                src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?q=80&w=2070"*/}
+      {/*                alt="Warm People"*/}
+      {/*                fill*/}
+      {/*                className="object-cover"*/}
+      {/*              />*/}
+      {/*            </motion.div>*/}
+      {/*            <div className="absolute bottom-4 left-4 z-20 flex items-center space-x-2 text-white">*/}
+      {/*              <Heart className="w-4 h-4" />*/}
+      {/*              <span className="text-sm font-medium">Warm Hospitality</span>*/}
+      {/*            </div>*/}
+      {/*          </div>*/}
+      {/*          <div className="p-6">*/}
+      {/*            <h3 className="text-xl font-semibold text-gray-900 mb-2">*/}
+      {/*              The Friendliest People*/}
+      {/*            </h3>*/}
+      {/*            <p className="text-gray-600">*/}
+      {/*              Sri Lankans smile at strangers, help tourists, and treat guests like family.*/}
+      {/*              Warning: You might leave with 47 new Facebook friends and invitations to three weddings!*/}
+      {/*            </p>*/}
+      {/*          </div>*/}
+      {/*        </motion.div>*/}
+      {/*      </StaggerItem>*/}
+      {/*    </StaggerContainer>*/}
 
-          <AnimatedSection animation="fade" delay={0.3} className="text-center">
-            <p className="text-lg text-gray-600 mb-6">
-              🌟 Fun Fact: Sri Lanka has more than 26 national parks, 100+ waterfalls,
-              and enough curry varieties to try a different one every day for a year!
-            </p>
-          </AnimatedSection>
-        </div>
-      </section>
+      {/*    <AnimatedSection animation="fade" delay={0.3} className="text-center">*/}
+      {/*      <p className="text-lg text-gray-600 mb-6">*/}
+      {/*        🌟 Fun Fact: Sri Lanka has more than 26 national parks, 100+ waterfalls,*/}
+      {/*        and enough curry varieties to try a different one every day for a year!*/}
+      {/*      </p>*/}
+      {/*    </AnimatedSection>*/}
+      {/*  </div>*/}
+      {/*</section>*/}
 
       {/* Our Vehicles Section */}
       <section id="vehicles" className="py-16 md:py-24 bg-gray-50">
