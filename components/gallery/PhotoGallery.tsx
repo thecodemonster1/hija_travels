@@ -25,23 +25,35 @@ export default function PhotoGallery({
   subtitle = "Captured moments, shared laughter, and unforgettable memories with amazing travelers!",
 }: PhotoGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [direction, setDirection] = useState(0); // -1 = prev, 1 = next
   const [currentPage, setCurrentPage] = useState(0);
   const totalPages = Math.ceil(images.length / ITEMS_PER_PAGE);
   const pageImages = images.slice(currentPage * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE + ITEMS_PER_PAGE);
   const goNext = useCallback(() => setCurrentPage((p) => Math.min(p + 1, totalPages - 1)), [totalPages]);
   const goPrev = useCallback(() => setCurrentPage((p) => Math.max(p - 1, 0)), []);
 
+  const lightboxPrev = useCallback(() => {
+    if (!selectedImage) return;
+    const i = images.findIndex((img) => img.id === selectedImage.id);
+    if (i > 0) { setDirection(-1); setSelectedImage(images[i - 1]); }
+  }, [selectedImage, images]);
+
+  const lightboxNext = useCallback(() => {
+    if (!selectedImage) return;
+    const i = images.findIndex((img) => img.id === selectedImage.id);
+    if (i < images.length - 1) { setDirection(1); setSelectedImage(images[i + 1]); }
+  }, [selectedImage, images]);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (!selectedImage) return;
-      const i = images.findIndex((img) => img.id === selectedImage.id);
       if (e.key === "Escape") setSelectedImage(null);
-      if (e.key === "ArrowLeft" && i > 0) setSelectedImage(images[i - 1]);
-      if (e.key === "ArrowRight" && i < images.length - 1) setSelectedImage(images[i + 1]);
+      if (e.key === "ArrowLeft") lightboxPrev();
+      if (e.key === "ArrowRight") lightboxNext();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [selectedImage, images]);
+  }, [selectedImage, lightboxPrev, lightboxNext]);
 
   return (
     <>
@@ -129,8 +141,8 @@ export default function PhotoGallery({
                         className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       />
-                      {/* Dark + blur overlay — always slightly present, stronger on hover */}
-                      <div className="absolute inset-0 bg-black/35 backdrop-blur-[2px] group-hover:bg-black/62 group-hover:backdrop-blur-[5px] transition-all duration-500" />
+                      {/* Hover overlay — dark tint only, no blur */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/45 transition-all duration-400" />
                       {/* Caption slides up on hover */}
                       <div className="absolute inset-0 flex flex-col justify-end p-3 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                         {image.caption && (
@@ -216,61 +228,61 @@ export default function PhotoGallery({
             {/* Prev */}
             {images.findIndex((img) => img.id === selectedImage.id) > 0 && (
               <button
-                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center z-10 transition-colors"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  const i = images.findIndex((img) => img.id === selectedImage.id);
-                  setSelectedImage(images[i - 1]);
-                }}
+                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/15 hover:bg-white/30 border border-white/20 flex items-center justify-center z-20 transition-all duration-200 hover:scale-105 active:scale-95"
+                onClick={(e) => { e.stopPropagation(); lightboxPrev(); }}
                 aria-label="Previous"
               >
-                <ChevronLeft className="w-6 h-6 text-white" />
+                <ChevronLeft className="w-7 h-7 text-white" />
               </button>
             )}
 
             {/* Next */}
             {images.findIndex((img) => img.id === selectedImage.id) < images.length - 1 && (
               <button
-                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center z-10 transition-colors"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  const i = images.findIndex((img) => img.id === selectedImage.id);
-                  setSelectedImage(images[i + 1]);
-                }}
+                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/15 hover:bg-white/30 border border-white/20 flex items-center justify-center z-20 transition-all duration-200 hover:scale-105 active:scale-95"
+                onClick={(e) => { e.stopPropagation(); lightboxNext(); }}
                 aria-label="Next"
               >
-                <ChevronRight className="w-6 h-6 text-white" />
+                <ChevronRight className="w-7 h-7 text-white" />
               </button>
             )}
 
-            {/* Image */}
-            <motion.div
-              key={selectedImage.id}
-              initial={{ scale: 0.88, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.88, opacity: 0 }}
-              transition={{ type: "spring", damping: 28, stiffness: 280 }}
-              className="relative max-w-6xl w-full mx-4 md:mx-20"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative w-full h-[62vh] md:h-[76vh] rounded-2xl overflow-hidden shadow-2xl">
-                <Image
-                  src={selectedImage.src}
-                  alt={selectedImage.alt}
-                  fill
-                  className="object-contain"
-                  quality={100}
-                  priority
-                />
-              </div>
-              {selectedImage.caption && (
-                <div className="mt-5 text-center">
-                  <div className="inline-flex items-center gap-2 px-7 py-3 bg-white/10 backdrop-blur-xl rounded-full border border-white/20">
-                    <p className="text-white text-sm font-semibold">{selectedImage.caption}</p>
-                  </div>
+            {/* Image — slides in from left or right */}
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={selectedImage.id}
+                custom={direction}
+                variants={{
+                  enter: (d: number) => ({ x: d * 80, opacity: 0, scale: 0.97 }),
+                  center: { x: 0, opacity: 1, scale: 1 },
+                  exit: (d: number) => ({ x: d * -80, opacity: 0, scale: 0.97 }),
+                }}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="relative max-w-6xl w-full mx-4 md:mx-20"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="relative w-full h-[62vh] md:h-[76vh] rounded-2xl overflow-hidden shadow-2xl">
+                  <Image
+                    src={selectedImage.src}
+                    alt={selectedImage.alt}
+                    fill
+                    className="object-contain"
+                    quality={100}
+                    priority
+                  />
                 </div>
-              )}
-            </motion.div>
+                {selectedImage.caption && (
+                  <div className="mt-5 text-center">
+                    <div className="inline-flex items-center gap-2 px-7 py-3 bg-white/10 backdrop-blur-xl rounded-full border border-white/20">
+                      <p className="text-white text-sm font-semibold">{selectedImage.caption}</p>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>
