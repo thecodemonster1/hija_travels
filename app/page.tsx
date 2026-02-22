@@ -621,15 +621,15 @@ export default function Home() {
                         className="object-cover"
                       />
                     </motion.div>
-                    <motion.div
-                      initial={{ scale: 0, rotate: -180 }}
-                      whileInView={{ scale: 1, rotate: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold"
-                    >
-                      Available Now
-                    </motion.div>
+                    {/*<motion.div*/}
+                    {/*  initial={{ scale: 0, rotate: -180 }}*/}
+                    {/*  whileInView={{ scale: 1, rotate: 0 }}*/}
+                    {/*  transition={{ duration: 0.5, delay: index * 0.1 }}*/}
+                    {/*  viewport={{ once: true }}*/}
+                    {/*  className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold"*/}
+                    {/*>*/}
+                    {/*  Available Now*/}
+                    {/*</motion.div>*/}
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <div className="flex items-center justify-between mb-2">
