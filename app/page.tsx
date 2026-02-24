@@ -24,8 +24,8 @@ import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer"
 import PhotoGallery from "@/components/gallery/PhotoGallery";
 
 export default function Home() {
-  // Mock data for vehicles
-  const vehicles = [
+
+    const vehicles = [
     {
       id: 1,
       name: "Honda KDH Van",
@@ -35,25 +35,34 @@ export default function Home() {
       features: ["Air Conditioned", "Comfortable Seats", "Music System", "WiFi Available"],
       description: "Travel in style and comfort with our reliable Honda KDH van. Perfect for group tours and family adventures!",
     },
-    // {
-    //   id: 2,
-    //   name: "Spacious SUV",
-    //   type: "Ideal for families & groups",
-    //   capacity: "Up to 6 passengers",
-    //   image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=2071",
-    //   features: ["Extra Luggage Space", "Premium Comfort", "Child Seats Available", "Panoramic Views"],
-    //   description: "Room for everyone! Our SUVs make family adventures a breeze (and yes, the kids will finally agree on something).",
-    // },
-    // {
-    //   id: 3,
-    //   name: "Luxury Mini Van",
-    //   type: "Best for large groups",
-    //   capacity: "Up to 12 passengers",
-    //   image: "https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?q=80&w=2070",
-    //   features: ["Maximum Space", "Group Travel", "Entertainment System", "Reclining Seats"],
-    //   description: "Bring the whole gang! Because memories are better when shared with more people who'll remind you of that embarrassing moment.",
-    // },
-  ];
+    {
+      id: 2,
+      name: "Honda Vezel",
+      type: "Ideal for couples & small families",
+      capacity: "Up to 4 passengers",
+      image: "/gallery/Vehicle/vehicle-21.jpg",
+      features: ["Air Conditioned", "Comfortable Seats", "Music System", "USB Charging"],
+      description: "Sleek, stylish and surprisingly spacious — the Honda Vezel is perfect for couples and small families who want a smooth, premium ride.",
+    },
+    {
+      id: 3,
+      name: "Suzuki Every",
+      type: "Great for small groups & city tours",
+      capacity: "Up to 7 passengers",
+      image: "/gallery/Vehicle/vehicle-20.jpeg",
+      features: ["Air Conditioned", "Compact & Agile", "Easy Parking", "Fuel Efficient"],
+      description: "Nimble, practical and full of character — the Suzuki Every is ideal for navigating Sri Lanka's winding roads and tight city streets with ease.",
+    },
+    {
+      id: 4,
+      name: "Toyota Alphard",
+      type: "Ultimate luxury for VIP travelers",
+      capacity: "Up to 7 passengers",
+      image: "/gallery/Vehicle/vehicle-1.jpeg",
+      features: ["Premium Leather Seats", "Executive Comfort", "Entertainment System", "WiFi Available"],
+      description: "The pinnacle of luxury travel. The Toyota Alphard offers first-class comfort, whisper-quiet rides, and executive-level space — because you deserve the best.",
+    },
+    ];
 
   // Real testimonials from Hija Travels guests
   const testimonials = [
@@ -383,7 +392,7 @@ export default function Home() {
             </p>
           </AnimatedSection>
 
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {vehicles.map((vehicle, index) => (
               <StaggerItem key={vehicle.id}>
                 <motion.div
