@@ -632,14 +632,14 @@ export default function Home() {
             ))}
           </StaggerContainer>
 
-          <AnimatedSection animation="bounce" delay={0.3} className="mt-12 text-center bg-blue-50 rounded-xl p-8 max-w-3xl mx-auto">
-            <p className="text-lg text-gray-700 mb-2">
-              ⭐⭐⭐⭐⭐ <span className="font-bold">5.0 Average Rating</span> from 200+ Happy Travelers!
-            </p>
-            <p className="text-gray-600">
-              Still not convinced? That's okay, we'll win you over with our charm (and excellent driving skills)!
-            </p>
-          </AnimatedSection>
+          {/*<AnimatedSection animation="bounce" delay={0.3} className="mt-12 text-center bg-blue-50 rounded-xl p-8 max-w-3xl mx-auto">*/}
+          {/*  <p className="text-lg text-gray-700 mb-2">*/}
+          {/*    ⭐⭐⭐⭐⭐ <span className="font-bold">5.0 Average Rating</span> from 200+ Happy Travelers!*/}
+          {/*  </p>*/}
+          {/*  <p className="text-gray-600">*/}
+          {/*    Still not convinced? That's okay, we'll win you over with our charm (and excellent driving skills)!*/}
+          {/*  </p>*/}
+          {/*</AnimatedSection>*/}
         </div>
       </section>
 
@@ -660,8 +660,8 @@ export default function Home() {
                     viewport={{ once: true }}
                   >
                     <Image
-                      src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070"
-                      alt="Sri Lanka Landscape"
+                      src="/gallery/Vehicle/vehicle-1.jpeg"
+                      alt="Toyota Alphard Luxury Vehicle"
                       fill
                       className="object-cover"
                     />
