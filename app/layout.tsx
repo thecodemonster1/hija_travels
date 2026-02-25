@@ -18,6 +18,14 @@ export const metadata: Metadata = {
   description:
     "Experience authentic Sri Lanka with a professional local guide. Personalized tours for individuals and families.",
   keywords: "Sri Lanka tours, travel guide, tourism, vacation, custom tours",
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
+  other: {
+    "apple-mobile-web-app-title": "Hija Travels",
+  },
   openGraph: {
     title: "Hija Travels - Premium Sri Lanka Tours",
     description:
