@@ -28,12 +28,12 @@ export default function Home() {
     const vehicles = [
     {
       id: 1,
-      name: "Honda KDH Van",
+      name: "Toyota KDH Van",
       type: "Perfect for groups & families",
       capacity: "Up to 10 passengers",
       image: "/gallery/Vehicle/vehicle-16.jpeg",
       features: ["Air Conditioned", "Comfortable Seats", "Music System", "WiFi Available"],
-      description: "Travel in style and comfort with our reliable Honda KDH van. Perfect for group tours and family adventures!",
+      description: "Travel in style and comfort with our reliable Toyota KDH van. Perfect for group tours and family adventures!",
     },
     {
       id: 2,
