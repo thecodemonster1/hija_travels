@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useState, useCallback, useEffect } from "react";
 import {
   ArrowRight,
   Users,
@@ -17,21 +18,328 @@ import {
   Gift,
   MessageCircle,
   Phone,
+  ChevronLeft,
+  ChevronRight,
+  X,
+  Images,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerContainer";
 import PhotoGallery from "@/components/gallery/PhotoGallery";
 
-export default function Home() {
+// ─── Vehicle Card with in-card image carousel + lightbox ───────────────────────
+interface VehicleImage {
+  src: string;
+  alt: string;
+}
 
-    const vehicles = [
+interface Vehicle {
+  id: number;
+  name: string;
+  type: string;
+  capacity: string;
+  images: VehicleImage[];
+  features: string[];
+  description: string;
+}
+
+function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIdx, setLightboxIdx] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  const total = vehicle.images.length;
+
+  const prev = useCallback((e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setDirection(-1);
+    setCurrentIdx((i) => (i - 1 + total) % total);
+  }, [total]);
+
+  const next = useCallback((e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setDirection(1);
+    setCurrentIdx((i) => (i + 1) % total);
+  }, [total]);
+
+  const openLightbox = () => {
+    setLightboxIdx(currentIdx);
+    setLightboxOpen(true);
+  };
+
+  const lightboxPrev = useCallback(() => {
+    setDirection(-1);
+    setLightboxIdx((i) => (i - 1 + total) % total);
+  }, [total]);
+
+  const lightboxNext = useCallback(() => {
+    setDirection(1);
+    setLightboxIdx((i) => (i + 1) % total);
+  }, [total]);
+
+  // Keyboard support for lightbox
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxOpen(false);
+      if (e.key === "ArrowLeft") lightboxPrev();
+      if (e.key === "ArrowRight") lightboxNext();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxOpen, lightboxPrev, lightboxNext]);
+
+  return (
+    <>
+      <motion.div
+        whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}
+        className="bg-white rounded-xl overflow-hidden shadow-sm h-full flex flex-col"
+      >
+        {/* ── Image carousel area ── */}
+        <div className="relative h-64 overflow-hidden group">
+          {/* Sliding images */}
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.div
+              key={currentIdx}
+              custom={direction}
+              variants={{
+                enter: (d: number) => ({ x: d * 60, opacity: 0 }),
+                center: { x: 0, opacity: 1 },
+                exit: (d: number) => ({ x: d * -60, opacity: 0 }),
+              }}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="absolute inset-0 cursor-pointer"
+              onClick={openLightbox}
+            >
+              <Image
+                src={vehicle.images[currentIdx].src}
+                alt={vehicle.images[currentIdx].alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Dark overlay + "View Gallery" hint on hover */}
+          <div
+            className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 cursor-pointer flex items-center justify-center"
+            onClick={openLightbox}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              whileHover={{ scale: 1.05 }}
+              className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 bg-black/60 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold"
+            >
+              <Images className="w-4 h-4" />
+              View Gallery
+            </motion.div>
+          </div>
+
+          {/* Prev button */}
+          {total > 1 && (
+            <button
+              onClick={prev}
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/50 hover:bg-black/75 flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100"
+              aria-label="Previous image"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+          )}
+
+          {/* Next button */}
+          {total > 1 && (
+            <button
+              onClick={next}
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/50 hover:bg-black/75 flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100"
+              aria-label="Next image"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          )}
+
+          {/* Dot indicators */}
+          {total > 1 && (
+            <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5 z-10">
+              {vehicle.images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={(e) => { e.stopPropagation(); setCurrentIdx(i); }}
+                  aria-label={`Go to image ${i + 1}`}
+                  className={`rounded-full transition-all duration-300 ${
+                    i === currentIdx
+                      ? "w-5 h-2 bg-white"
+                      : "w-2 h-2 bg-white/50 hover:bg-white/80"
+                  }`}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Image counter badge */}
+          <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm text-white text-xs font-semibold px-2 py-0.5 rounded-full z-10">
+            {currentIdx + 1} / {total}
+          </div>
+        </div>
+
+        {/* ── Card body ── */}
+        <div className="p-6 flex-1 flex flex-col">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-2xl font-bold text-gray-900">{vehicle.name}</h3>
+            <motion.div
+              animate={{ rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+            >
+              <Car className="w-6 h-6 text-brand-600" />
+            </motion.div>
+          </div>
+          <p className="text-brand-600 font-medium mb-2">{vehicle.type}</p>
+          <p className="text-gray-600 mb-4 flex items-center">
+            <Users className="w-4 h-4 mr-2" />
+            {vehicle.capacity}
+          </p>
+          <p className="text-gray-700 mb-4 flex-1">{vehicle.description}</p>
+          <div className="border-t pt-4">
+            <h4 className="font-semibold text-gray-900 mb-2">Features:</h4>
+            <ul className="space-y-1">
+              {vehicle.features.map((feature, idx) => (
+                <motion.li
+                  key={idx}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                  className="text-sm text-gray-600 flex items-center"
+                >
+                  <span className="text-green-500 mr-2">✓</span>
+                  {feature}
+                </motion.li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* ── Lightbox ── */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center backdrop-blur-sm"
+            onClick={() => setLightboxOpen(false)}
+          >
+            {/* Top bar */}
+            <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-5 bg-gradient-to-b from-black/70 to-transparent z-10">
+              <div>
+                <p className="text-white font-bold text-base">{vehicle.name}</p>
+                <p className="text-white/60 text-xs">
+                  {lightboxIdx + 1} of {total} photos
+                </p>
+              </div>
+              <button
+                onClick={() => setLightboxOpen(false)}
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-5 h-5 text-white" />
+              </button>
+            </div>
+
+            {/* Prev */}
+            <button
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/15 hover:bg-white/30 border border-white/20 flex items-center justify-center z-20 transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-30"
+              onClick={(e) => { e.stopPropagation(); lightboxPrev(); }}
+              aria-label="Previous"
+            >
+              <ChevronLeft className="w-7 h-7 text-white" />
+            </button>
+
+            {/* Next */}
+            <button
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/15 hover:bg-white/30 border border-white/20 flex items-center justify-center z-20 transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-30"
+              onClick={(e) => { e.stopPropagation(); lightboxNext(); }}
+              aria-label="Next"
+            >
+              <ChevronRight className="w-7 h-7 text-white" />
+            </button>
+
+            {/* Main image */}
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={lightboxIdx}
+                custom={direction}
+                variants={{
+                  enter: (d: number) => ({ x: d * 80, opacity: 0, scale: 0.97 }),
+                  center: { x: 0, opacity: 1, scale: 1 },
+                  exit: (d: number) => ({ x: d * -80, opacity: 0, scale: 0.97 }),
+                }}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="relative max-w-5xl w-full mx-4 md:mx-24"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="relative w-full h-[62vh] md:h-[75vh] rounded-2xl overflow-hidden shadow-2xl">
+                  <Image
+                    src={vehicle.images[lightboxIdx].src}
+                    alt={vehicle.images[lightboxIdx].alt}
+                    fill
+                    className="object-contain"
+                    quality={100}
+                    priority
+                  />
+                </div>
+
+                {/* Dot indicators inside lightbox */}
+                <div className="mt-5 flex justify-center gap-2">
+                  {vehicle.images.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={(e) => { e.stopPropagation(); setDirection(i > lightboxIdx ? 1 : -1); setLightboxIdx(i); }}
+                      aria-label={`Go to image ${i + 1}`}
+                      className={`rounded-full transition-all duration-300 ${
+                        i === lightboxIdx
+                          ? "w-6 h-2.5 bg-white"
+                          : "w-2.5 h-2.5 bg-white/40 hover:bg-white/70"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+export default function Home() {
+  // ── VEHICLE DATA ──────────────────────────────────────────────────────────────
+  // 📝 TO CUSTOMIZE: Add or remove image paths in each vehicle's `images` array.
+  // Images live in /public/gallery/Vehicle/
+  // Each vehicle can have as many images as you like.
+  const vehicles: Vehicle[] = [
     {
       id: 1,
       name: "Toyota KDH Van",
       type: "Perfect for groups & families",
       capacity: "Up to 10 passengers",
-      image: "/gallery/Vehicle/vehicle-16.jpeg",
+      // ✏️ KDH Van images — add/remove paths here:
+      images: [
+        { src: "/gallery/Vehicle/vehicle-16.jpeg", alt: "Toyota KDH Van - front view" },
+        { src: "/gallery/Vehicle/vehicle-17.jpeg", alt: "Toyota KDH Van - side view" },
+        { src: "/gallery/Vehicle/vehicle-18.jpeg", alt: "Toyota KDH Van - interior" },
+        { src: "/gallery/Vehicle/vehicle-19.jpeg", alt: "Toyota KDH Van - on the road" },
+      ],
       features: ["Air Conditioned", "Comfortable Seats", "Music System", "WiFi Available"],
       description: "Travel in style and comfort with our reliable Toyota KDH van. Perfect for group tours and family adventures!",
     },
@@ -40,7 +348,13 @@ export default function Home() {
       name: "Honda Vezel",
       type: "Ideal for couples & small families",
       capacity: "Up to 4 passengers",
-      image: "/gallery/Vehicle/vehicle-21.jpg",
+      // ✏️ Honda Vezel images — add/remove paths here:
+      images: [
+        { src: "/gallery/Vehicle/vehicle-21.jpg",  alt: "Honda Vezel - front view" },
+        { src: "/gallery/Vehicle/vehicle-9.jpeg",  alt: "Honda Vezel - side view" },
+        { src: "/gallery/Vehicle/vehicle-10.jpeg", alt: "Honda Vezel - interior" },
+        { src: "/gallery/Vehicle/vehicle-11.jpeg", alt: "Honda Vezel - on the road" },
+      ],
       features: ["Air Conditioned", "Comfortable Seats", "Music System", "USB Charging"],
       description: "Sleek, stylish and surprisingly spacious — the Honda Vezel is perfect for couples and small families who want a smooth, premium ride.",
     },
@@ -49,7 +363,13 @@ export default function Home() {
       name: "Suzuki Every",
       type: "Great for small groups & city tours",
       capacity: "Up to 7 passengers",
-      image: "/gallery/Vehicle/vehicle-20.jpeg",
+      // ✏️ Suzuki Every images — add/remove paths here:
+      images: [
+        { src: "/gallery/Vehicle/vehicle-20.jpeg", alt: "Suzuki Every - front view" },
+        { src: "/gallery/Vehicle/vehicle-12.jpeg", alt: "Suzuki Every - side view" },
+        { src: "/gallery/Vehicle/vehicle-13.jpeg", alt: "Suzuki Every - interior" },
+        { src: "/gallery/Vehicle/vehicle-14.jpeg", alt: "Suzuki Every - on the road" },
+      ],
       features: ["Air Conditioned", "Compact & Agile", "Easy Parking", "Fuel Efficient"],
       description: "Nimble, practical and full of character — the Suzuki Every is ideal for navigating Sri Lanka's winding roads and tight city streets with ease.",
     },
@@ -58,11 +378,21 @@ export default function Home() {
       name: "Toyota Alphard",
       type: "Ultimate luxury for VIP travelers",
       capacity: "Up to 7 passengers",
-      image: "/gallery/Vehicle/vehicle-1.jpeg",
+      // ✏️ Toyota Alphard images — add/remove paths here:
+      images: [
+        { src: "/gallery/Vehicle/vehicle-1.jpeg",  alt: "Toyota Alphard - front view" },
+        { src: "/gallery/Vehicle/vehicle-2.jpeg",  alt: "Toyota Alphard - side view" },
+        { src: "/gallery/Vehicle/vehicle-3.jpeg",  alt: "Toyota Alphard - interior" },
+        { src: "/gallery/Vehicle/vehicle-4.jpeg",  alt: "Toyota Alphard - luxury detail" },
+        { src: "/gallery/Vehicle/vehicle-5.jpeg",  alt: "Toyota Alphard - on the road" },
+        { src: "/gallery/Vehicle/vehicle-6.jpeg",  alt: "Toyota Alphard - night shot" },
+        { src: "/gallery/Vehicle/vehicle-7.jpeg",  alt: "Toyota Alphard - rear view" },
+        { src: "/gallery/Vehicle/vehicle-8.jpeg",  alt: "Toyota Alphard - close up" },
+      ],
       features: ["Premium Leather Seats", "Executive Comfort", "Entertainment System", "WiFi Available"],
       description: "The pinnacle of luxury travel. The Toyota Alphard offers first-class comfort, whisper-quiet rides, and executive-level space — because you deserve the best.",
     },
-    ];
+  ];
 
   // Real testimonials from Hija Travels guests
   const testimonials = [
@@ -393,73 +723,9 @@ export default function Home() {
           </AnimatedSection>
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {vehicles.map((vehicle, index) => (
+            {vehicles.map((vehicle) => (
               <StaggerItem key={vehicle.id}>
-                <motion.div
-                  whileHover={{ y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.2)" }}
-                  className="bg-white rounded-xl overflow-hidden shadow-sm h-full flex flex-col"
-                >
-                  <div className="relative h-64 overflow-hidden">
-                    <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.5 }}>
-                      <Image
-                        src={vehicle.image}
-                        alt={vehicle.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </motion.div>
-                    {/*<motion.div*/}
-                    {/*  initial={{ scale: 0, rotate: -180 }}*/}
-                    {/*  whileInView={{ scale: 1, rotate: 0 }}*/}
-                    {/*  transition={{ duration: 0.5, delay: index * 0.1 }}*/}
-                    {/*  viewport={{ once: true }}*/}
-                    {/*  className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold"*/}
-                    {/*>*/}
-                    {/*  Available Now*/}
-                    {/*</motion.div>*/}
-                  </div>
-                  <div className="p-6 flex-1 flex flex-col">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-2xl font-bold text-gray-900">
-                        {vehicle.name}
-                      </h3>
-                      <motion.div
-                        animate={{ rotate: [0, 10, -10, 0] }}
-                        transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                      >
-                        <Car className="w-6 h-6 text-brand-600" />
-                      </motion.div>
-                    </div>
-                    <p className="text-brand-600 font-medium mb-2">
-                      {vehicle.type}
-                    </p>
-                    <p className="text-gray-600 mb-4 flex items-center">
-                      <Users className="w-4 h-4 mr-2" />
-                      {vehicle.capacity}
-                    </p>
-                    <p className="text-gray-700 mb-4 flex-1">{vehicle.description}</p>
-                    <div className="border-t pt-4">
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        Features:
-                      </h4>
-                      <ul className="space-y-1">
-                        {vehicle.features.map((feature, idx) => (
-                          <motion.li
-                            key={idx}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ delay: idx * 0.1 }}
-                            viewport={{ once: true }}
-                            className="text-sm text-gray-600 flex items-center"
-                          >
-                            <span className="text-green-500 mr-2">✓</span>
-                            {feature}
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </motion.div>
+                <VehicleCard vehicle={vehicle} />
               </StaggerItem>
             ))}
           </StaggerContainer>
